@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Spotify-Web Player:Music for everyone</title>
+    <link rel="icon" href="assets/logo.png" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <div class="navbar">
+        <a href="https://open.spotify.com/#login">
+            <img src="assets/spotify-brands (1).svg" alt="spotify" id="logo">
+        </a>
+       <a href="#">
+        <img src="assets/home.png" alt="home" id="home">
+       </a> 
+            <label for ="search" >
+                <div id="search">
+                <img src="assets/search.png" alt="search" id="search-icon">
+                <input type="text" placeholder="What do you want to play ?" id="searchbar">
+                <img src="assets/open_in_browser.png" alt="browse" id="browse">
+                </div>  
+            </label>
+            <img src="assets/menu.png" alt="menu icon" class="menu">
+             <button id="open-app">Open app</button>
+        <div class="link-container">    
+            <a href="#" class="links1">Premium</a>
+            <a href="#" class="links1">Support</a>
+            <a href="#" class="links1">Download</a>
+            <a href="#" id="install-tag">
+                <div class="links1" id="install">
+                    <img src="assets/download.png" alt="install"  id="download">
+                    Install App
+                </div>
+            </a>
+            <a href="#" class="links1" >Sign up</a>
+            <button id="login">Log in</button>
+        </div>
+    </div>
+    </header>
+    <main>
+    <div class="library">
+        <div class="lib-head">
+            <img src="assets/library_icon.png" alt="library" id=lib-icon>
+            <p id=lib-text>Your Library</p>
+            <button id="plus-icon">&plus;</button>
+        </div>   
+        <div class="scroll-cards"> 
+            <div id="card1" class="lib-cards">
+                <h4>Create your first playlist</h4>
+                <p class="cards-para">It's easy,we'll help you</p>
+                <button class="lib-btn">Create playlist</button>
+            </div>
+            <div id="card2" class="lib-cards">
+                <h4>Let's find some podcasts to follow</h4>
+                <p class="cards-para">We'll keep you updated on new episodes</p>
+                <button class="lib-btn">Browse podcasts</button>
+            </div>
+        </div>
+        <div class="lib-footer">
+            <div class="links2" ><a href="#">Legal</a></div>
+            <div class="links2" ><a href="#">Safety & Privacy Center</a></div>
+            <div class="links2" ><a href="#">Privacy Policy</a></div>
+            <div class="links2" ><a href="#">Cookies</a></div>
+            <div class="links2" ><a href="#">About Ads</a></div>
+            <div class="links2" ><a href="#">Accessibility</a></div><br>
+            <div class="links2" ><a href="#"  id="cookies">Cookies</a></div>
+        </div>
+        <button id="lang-btn">
+            <img src="assets/language.png" alt="language" id="btn-img">
+            <p id="lang">English</p>
+        </button>
+    </div>
+    <div class="content">
+        <div class="head-section">
+        <a href="#" class="content-urls" >Trending Songs</a>
+        <button class="show-all">Show all</button>
+        </div>
+        <div class="trends">
+            <div class="song-card">
+                <img src="assets/trend-card-1.png" alt="trending song" class="content-img">
+                <a href="#" class="main-head">VIBE</a>
+                <a href="#" class="second-head">Guru Randhawa,Shanava Kapoor,French Montana</a>
+            </div>
+            <div class="song-card">
+                <img src="assets/trend-card-2.png" alt="trending song" class="content-img">
+                <a href="#" class="main-head"> CourtSide</a>
+                <a href="#" class="second-head">Karan Aujla,Signature By SB</a>
+            </div>
+            <div class="song-card">
+                <img src="assets/trend-card-3.png" alt="trending song" class="content-img">
+                <a href="#" class="main-head">Shaky</a>
+                <a href="#"class="second-head">Sanju Rathod,G-SPXRK</a>            </div>
+            <div class="song-card">
+                <img src="assets/trend-card-4.png" alt="trending song" class="content-img">
+                <a href="#" class="main-head"> STFU</a>
+                <a href="#" class="second-head">AP Dhillon ,Shinda Kahlon</a>
+            </div>
+            <div class="song-card">
+                <img src="assets/trend-card-5.png" alt="trending song" class="content-img">
+                <a href="#" class="main-head"> Minnalvala(From "Narivetta")</a>
+                <a href="#" class="second-head">Jakes Bejoy,Sid Sriram,Sithara KrishnaKumar</a>
+            </div>
+        </div>
+            <div class="head-section">
+            <a href="#" class="content-urls">Popular artists</a>
+            <button class="show-all">Show all</button>
+            </div>
+        <div class="artists">
+            <div class="artist">
+                <img src="assets/artist-1.png" alt="popular artists" class="content-img popArtist">
+                <a href="#" class="main-head artist-info" >Pritam</a>
+                <a href="#" class="second-head  artist-info">Artist</a>
+            </div>
+            <div class="artist">
+                <img src="assets/artist-2.png" alt="popular artists" class="content-img popArtist">
+                <a href="#" class="main-head  artist-info">A.R Rahman</a>
+                <a href="#" class="second-head  artist-info">Artist</a>
+            </div>
+            <div class="artist">
+                <img src="assets/artist-3.png" alt="popular artists" class="content-img popArtist">
+                <a href="#" class="main-head  artist-info">Arijit Singh</a>
+                <a href="#" class="second-head artist-info">Artist</a>
+            </div>
+            <div class="artist">
+                <img src="assets/artist-4.png" alt="popular artists" class="content-img popArtist">
+                <a href="#" class="main-head artist-info" >Sachin-Jigar</a>
+                <a href="#" class="second-head artist-info">Artist</a>
+            </div>
+            <div>
+                <img src="assets/artist-5.png" alt="popular artists" class="content-img popArtist">
+                <a href="#" class="main-head artist-info">Vishal-Shekhar</a>
+                <a href="#" class="second-head  artist-info">Artist</a>
+            </div>
+        </div class="artist">
+            <div class="head-section">
+            <a href="#" class="content-urls">Feautured Charts</a>
+            <button class="show-all">Show all</button>
+            </div>
+        <div class="charts">
+            <div class="charts-tag">
+                <img src="assets/card3img.jpeg" alt="featured charts" class="content-img">
+                <p class="second-head chart-desc">You weekly update of the most played ...</p>
+            </div>
+            <div class="charts-tag">
+                <img src="assets/card2img.jpeg" alt="featured charts"class="content-img">
+                <p class="second-head chart-desc">Your weekly update of thew most played...</p>
+            </div>
+            <div class="charts-tag">
+                <img src="assets/card1img.jpeg" alt="featured charts" class="content-img">
+                <p class="second-head chart-desc">Your daily update of most played... </p>
+            </div>
+            <div class="charts-tag">
+                <img src="assets/card4img.png" alt="featured charts" class="content-img">
+                <p class="second-head chart-desc">Your daily update of most played...</p>
+            </div>
+            <div class="charts-tag">
+                <img src="assets/card5img.png" alt="featured charts" class="content-img">
+                <p class="second-head chart-desc">Your daily update of most viral...</p>
+            </div>
+        </div>
+        <hr id="line" color="#262626" >
+        <div id="about">
+            <div class="info-block">
+                <p class="heading">Company</p>
+                <a href="#" class="info">About</a>
+                <a href="#" class="info">Jobs</a>
+                <a href="#" class="info">For the Record</a>
+            </div>
+            <div class="info-block">
+                <p class="heading">Communities</p>
+                <a href="#" class="info">For Artists</a>
+                <a href="#" class="info">Developers</a>
+                <a href="#" class="info">Advertising</a>
+                <a href="#" class="info">Investors</a>
+                <a href="#" class="info">Vendors</a>
+
+
+            </div>
+            <div class="info-block">
+                <p class="heading">Useful Links</p>
+                <a href="#" class="info">Support</a>
+                <a href="#" class="info">Free Mobile App</a>
+            </div>
+            <div class="info-block">
+            <p class="heading">Spotify Plans</p>
+            <a href="#" class="info">Support</a>
+            <a href="#" class="info">Free Mobile App</a>
+            <a href="#" class="info">Spotify Plans</a>
+            <a href="#" class="info">Premium Individual</a>
+            <a href="#" class="info">Premium Duo</a>
+            <a href="#" class="info">Premium Family</a>
+            <a href="#" class="info">Premium Student</a>
+            <a href="#" class="info">Spotify Free</a>
+            </div>
+            <div class="social-media info-block">
+                <div class="social-site">
+                    <i class="fa-brands fa-instagram" style="color:#ffffff;"></i>
+                </div>
+                <div class="social-site">
+                    <i class="fa-brands fa-twitter" style="color: #ffffff;"></i>
+                </div>
+                <div class="social-site">
+                    <i class="fa-brands fa-facebook-f" style="color: #ffffff;"></i>
+                </div>
+            </div>
+        </div>
+    <hr id="line" color="#262626" >
+    <div>
+        <p id="copyright">&copy;2025 Spotify AB</p>
+    </div>
+    </div>
+    </main>
+    <footer>
+        <div class="music-player">
+            <div style="display: flex;">
+                <img src="./assets/musicbar-img.png" alt="current playing song" id="current-song">
+                <div style="display: flex;flex-direction: column;">
+                    <p id="playing-song">Ishq Mera(Feat. Isha Gupta)</p>
+                    <p class="singer">Jubin Nautiyal||Isha Gupta</p>
+                </div>
+                <button id="like-btn">&hearts;</button>
+                <button id="display-btn">&rect;</button>
+            </div>
+                <div style="display: flex;flex-direction: column; justify-content: baseline;">
+                    <div class="player">
+                        <img src="assets/player_icon1.png" alt="music player btn" class="player-btn">
+                        <img src="assets/player_icon2.png" alt="music player btn" class="player-btn">
+                        <img src="assets/player_icon3.png" alt="music player btn" class="player-btn">
+                        <img src="assets/player_icon4.png" alt="music player btn" class="player-btn">
+                        <img src="assets/player_icon5.png" alt="music player btn" class="player-btn">
+                    </div>
+                    <div class="playback-bar">
+                        <span class="curr-time"><p style="color:white">0:00</p></span>
+                        <input type="range" min="0" max="100" class="progress-bar" step="1">
+                        <span class="total-time"><p style="color:white">3:33</p></span>
+                    </div>
+                </div>
+        </div>
+    </footer>
+</body>
+</html>
