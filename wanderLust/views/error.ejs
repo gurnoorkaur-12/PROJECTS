@@ -1,0 +1,23 @@
+<%layout ("/layouts/boilerplate.ejs") %>
+<div class="card mb-3 error-card">
+    <div class="row g-0 d-flex justify-content-center align-items-center">
+        <div class="col-md-5 col-sm-5 col-8">
+            <img src="/images/error-img.jpg" class="card-img-top img-fluid rounded-start" alt="Something went wrong">
+        </div>
+        <div class="col-md-7 col-sm-12 col-12">
+            <div class="card-body mt-4">
+                <h5 class="card-title error-title">OOPS : ERROR</h5>
+                <div class="card-text alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 error-logo" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                    <p class="m-1">
+                        <%=message%>
+                    </p>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<script>
+    let container=document.querySelector(".container");
+    container.classList.add("m-0");
+</script>

@@ -1,0 +1,53 @@
+<%-layout("/layouts/boilerplate.ejs");%>
+    <div class="d-flex justify-content-center">
+        <h2 class="text-center me-3 ">Tell us about your place</h2>
+        <img src="/images/addListing.svg" style="min-width: 2rem; margin-bottom: 3px;">
+    </div>
+    <div class="m-2">
+    <form method="POST" action="/listings" class="needs-validation" novalidate>
+        <div class="row"  style="background-color:#b5cfe454;border-radius: 2rem; padding: 1rem; border: 3px solid #b5cfe4;">
+            <div class="form-floating col-8  offset-md-2 mb-4">
+                <input class="form-control" id="floatingInput" type="text" name="listing[title]" placeholder="ENTER TITLE" required>
+                <label class="ms-2" for="floatingInput">TITLE</label>
+                <div class="invalid-feedback">
+                    Please provide a Title.
+                </div>
+            </div>
+            <div class="form-floating col-8  offset-md-2 mb-4">
+                <textarea class="form-control" id="floatingTextarea2" name="listing[description]"
+                placeholder="ENTER DESCRIPTION" required></textarea>
+                <label class="ms-2" for="floatingTextarea2">DESCRIPTION</label>
+                <div class="invalid-feedback">
+                    Please provide a Description for your place.
+                </div>
+            </div>
+            <div class="form-floating col-md-4 col-sm-8 col-8 offset-md-2 mb-4">
+                <input class="form-control" id="floatingInput" type="text"  name="listing[location]" placeholder="ENTER LOCATION" required>
+                <label class="ms-2" for="floatingInput">LOCATION</label>
+                <div class="invalid-feedback">
+                    Location is Required.
+                </div>
+            </div>
+            <div class="form-floating col-md-4 col-sm-8 col-8 mb-4">
+                <input class="form-control" id="floatingInput" type="text"  name="listing[country]" placeholder="ENTER COUNTRY" required>
+                <label class="ms-2" for="floatingInput">COUNTRY</label>
+                <div class="invalid-feedback">
+                    Please provide country.
+                </div>
+            </div>
+            <div class="form-floating col-8  offset-md-2 mb-4">
+                <input class="form-control" id="floatingInput" type="number" name="listing[price]" placeholder="ENTER PRICE" required>
+                <label class="ms-2" for="floatingInput">PRICE</label>
+                <div class="invalid-feedback">
+                    Price is Required.
+                </div>
+            </div>            
+            <div class="form-floating col-8  offset-md-2 mb-4">
+                <input class="form-control" id="floatingInput" type="text" name="listing[image]" placeholder="ENTER IMG URL/LINK">     
+                <label  class="ms-2" for="floatingInput">IMAGE</label>
+            </div>
+         </div>
+            <button class="d-block mx-auto p-1 btn btn-outline-dark mb-4 mt-4 ">ADD LISTING</button>       
+    </form>
+    </div>
+   

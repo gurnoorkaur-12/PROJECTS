@@ -1,0 +1,135 @@
+<div class="review-container row row-cols-md-2 g-3 mb-4">
+  <%for(let i=0; i<Math.min(4,reviews.length); i++){%>
+    <div class="col">
+      <div class="card review">
+        <div class="review-info">
+          <div class="text-primary-emphasis pt-1 ms-1" style="font-size: large;">
+            Person
+          </div>
+          <div class="d-flex col justify-content-end opacity-75 align-items-center">
+            <div class="material-symbols-outlined text-danger">
+              history
+            </div>
+            <p class="review-date m-0 ">
+              <%=reviews[i].relativeDate%>
+            </p> 
+            <form id="deleteReview<%=reviews[i]._id%>" action="/listings/<%=listing._id%>/reviews/<%=reviews[i]._id%>?_method=DELETE" method="POST">
+              <button type= "button" class="btn btn-sm ms-2 delete-review-btn pt-1" data-bs-toggle="modal" data-bs-target="#confirmRequest">
+                <span class="material-symbols-outlined " style="color: #dc3545;">
+                  delete
+                </span>
+              </button>
+            </form>
+          </div>   
+        </div>  
+        <div class="card-body">
+          <div class="review-rating">
+            <%for(let j=0;j<reviews[i].rating;j++){%>
+            <i class="fa-regular fa-star fa-solid text-warning m-1 mb-2" style="font-size: 1.2rem;" ></i>
+            <%}%>
+          </div>
+          <div class="review-comment">
+            <p class="card-text">
+              <%=reviews[i].comment%>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+   <%}%>
+</div>
+
+  <%if(reviews.length>4){%>
+    <button class="showMore btn btn-outline-secondary ms-3 btn-sm mt-3 mb-4"><b>SHOW MORE</b></button>
+  <%}%>
+
+
+
+
+<!-- CONFIRM request Modal -->
+<div class="modal fade" id="confirmRequest" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmRequestLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #ff385c;color: white;">
+        <h1 class="modal-title fs-5" id="confirmRequestLabel">DELETE</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body " id="confirmation">
+        ARE YOU SURE YOU WANT TO DELETE THIS REVIEW ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+        <button type="submit " class="btn btn-primary" id="delete-reviewFinal">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+<script>
+    let showMore = document.querySelector(".showMore");
+    let offset = 4;
+    let id = "<%=listing._id%>";
+    let newReviews = []; 
+
+    if(showMore){
+      showMore.addEventListener("click",async()=>{
+        try {
+          const res = await fetch(`/listings/${id}/reviews/loadreviews?offset=${offset}`);
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+           newReviews = await res.json();
+        } catch (err) {
+          console.log(err);
+        }
+        let reviewContainer = document.querySelector(".review-container");
+          newReviews.forEach(review => {
+            let request = {
+              title:"DELETE",
+              message:"ARE YOU SURE YOU WANT TO DELETE THIS REVIEW ?",
+              formId:"deleteReview"+review._id
+            };
+            const div = document.createElement("div");
+            div.classList.add("col");
+            let stars="";
+              for(let i=0;i<review.rating;i++){
+                stars+=`<i class="fa-regular fa-star fa-solid text-warning m-1 mb-3" style="font-size: 1.2rem;" ></i>`
+              }
+            div.innerHTML = `
+            <div class="card review">
+              <div class="review-info">
+                <div class="text-primary-emphasis pt-2" style="font-size: large;">
+                  Person
+                </div>
+                <div class="d-flex col justify-content-end opacity-75 align-items-center">
+                  <div class="material-symbols-outlined text-danger">
+                    history
+                  </div>    
+                  <p class="review-date m-0">
+                    ${review.relativeDate}
+                  </p> 
+                  <form id="deleteReview${review._id}" action="/listings/${id}/reviews/${review._id}?_method=DELETE" method="POST">
+                    <button type= "button" class="btn btn-sm ms-2 delete-review-btn pt-1" data-bs-toggle="modal" data-bs-target="#confirmRequest">
+                      <span class="material-symbols-outlined " style="color: #dc3545;">
+                        delete
+                      </span>
+                    </button>
+                  </form>
+                </div>  
+              </div>    
+              <div class="card-body">
+                <div class="review-rating">
+                  ${stars}
+                </div>
+                <p class="card-text">${review.comment}</p>
+              </div>
+            </div>`
+            reviewContainer.appendChild(div);
+          });  
+          offset+=newReviews.length;
+          if (newReviews.length < 4) {
+          showMore.style.display = "none";
+      }
+      addDeleteListeners();
+      })
+    }
+</script>

@@ -1,0 +1,65 @@
+<% layout("/layouts/boilerplate")%>
+<body>
+   <div class="show-listing-card card">
+        <div class="row g-0">
+            <div class="col-md-5 col-sm-12">
+                <img src="<%=listing.image%>"class="show-img"  alt="no img" height="300px" width="300px">
+            </div>
+            <div class="col-md-7 col-sm-12" style="margin: auto 0px;">
+                <ul class="list-group card-body">
+                    <li class="list-group-item details d-flex align-content-baseline">
+                        <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
+                        <%=listing.title%>
+                    </li> 
+                    <li class="list-group-item details d-flex align-content-baseline">
+                        <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
+                        <%=listing.description%>
+                    </li>
+                    <li class="list-group-item details d-flex align-content-baseline">
+                        <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
+                        <%=listing.location%>
+                        </li>
+                    <li class="list-group-item details d-flex align-content-baseline">
+                        <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
+                        <%=listing.country%>
+                    </li>
+                    <li class="list-group-item details d-flex align-content-baseline">
+                        <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
+                        &#8377;<%=listing.price.toLocaleString("en-IN")%></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class=" edit-del-btn">
+        <div class="btn-group p-1 m-3">
+            <form action="/listings/<%=listing._id%>/edit" method="get">
+                <button class="btn btn-outline-primary show-page-editBtn">EDIT LISTING</button>
+            </form>
+            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+                <button class="btn btn-outline-primary show-page-deleteBtn">DELETE LISTING</button>
+            </form>
+        </div>
+    </div>
+    <div>
+    <div class="review-header w-100">
+        <div class="d-flex">
+            <h2>Reviews</h2>
+            <img src="/images/review.svg" alt="reviews" class="ms-2" style="object-fit: contain;">
+        </div>
+        <button type="button" class="postReview-btn btn btn-lg" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="@mdo">Leave a Review</button>
+        </div>
+        <%-include("../includes/reviewForm.ejs",{listing})%>
+        <%if(reviews.length){%>
+            <%-include("../includes/review.ejs",{listing,reviews})%>
+
+        <%}else{%>
+            <div class="alert alert-primary " role="alert">
+                <div class="text-align-center">
+                    <h5>NO REVIEWS YET!</h5>
+                    <h6>ADD A REVIEW</h6>
+                </div>
+                
+            </div>
+        <%}%>
+    </div>
+</body>

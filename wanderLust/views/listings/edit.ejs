@@ -1,0 +1,52 @@
+<%-layout("/layouts/boilerplate.ejs")%>
+    <div class="edit-card card " style=" background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255,255,255, 0.5)),url(<%=listing.image%>);">
+            <form class="edit-form needs-validation" method="POST" action="/listings/<%=listing.id%>?_method=PUT" novalidate>
+                <div class="row ">
+                    <div class="form-floating col-8 offset-md-2 mb-4">
+                        <input class="form-control" id="floatingInput" type="text" name="listing[title]" value="<%=listing.title%>" required>
+                        <label class="ms-2" for="floatingInput">TITLE</label>
+                        <div class="invalid-feedback">
+                            Please provide a Title.
+                        </div>
+                    </div>
+                    <div class="form-floating col-8  offset-md-2 mb-4">
+                        <textarea class="form-control" id="floatingTextarea2" name="listing[description]"
+                        placeholder="ENTER DESCRIPTION"  required><%=listing.description%></textarea>
+                        <label class="ms-2" for="floatingTextarea2">DESCRIPTION</label>
+                        <div class="invalid-feedback">
+                            Please provide a Description for your place.
+                        </div>
+                    </div>
+                    <div class="form-floating col-md-4 col-sm-8 col-8 offset-md-2 mb-4">
+                        <input class="form-control" id="floatingInput" value="<%=listing.location%>" type="text"  name="listing[location]" placeholder="ENTER LOCATION" required>
+                        <label class="ms-2" for="floatingInput">LOCATION</label>
+                        <div class="invalid-feedback">
+                            Location is Required.
+                        </div>
+                    </div>
+                    <div class="form-floating col-md-4 col-sm-8 col-8 mb-4">
+                        <input class="form-control" id="floatingInput" value="<%=listing.country%>" type="text"  name="listing[country]" placeholder="ENTER COUNTRY" required>
+                        <label class="ms-2" for="floatingInput">COUNTRY</label>
+                        <div class="invalid-feedback">
+                           Please provide country.
+                        </div>
+                    </div>
+                    <div class="form-floating col-8  offset-md-2 mb-4">
+                        <input class="form-control" id="floatingInput" value="<%=listing.price%>" type="number" name="listing[price]" placeholder="ENTER PRICE" required>
+                        <label class="ms-2" for="floatingInput">PRICE</label>
+                        <div class="invalid-feedback">
+                            Price is Required.
+                        </div>
+                    </div>            
+                    <div class="form-floating col-8  offset-md-2 mb-4">
+                        <input class="form-control" id="floatingInput" value="<%=listing.image%>" type="text" name="listing[image]" placeholder="ENTER IMG URL/LINK" required>     
+                        <label  class="ms-2" for="floatingInput">IMAGE</label>
+                        <div class="invalid-feedback">
+                            Image url can't be empty.
+                        </div>
+                    </div>
+                </div>
+                <button class="d-block mx-auto p-1 btn btn-large btn-primary mb-4 edit-btn">EDIT LISTING</button>       
+             </form>
+        </div>
+    </div>

@@ -1,0 +1,364 @@
+.outfit{
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:500;
+  font-style: normal;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+/* NAVBAR */
+.navbar{
+    background-color: #f9f9f9!important;
+    height: 6rem;
+    font-weight:500 ;
+    margin-bottom: 1rem;
+}
+.fa-compass{
+    color: #ff385c;
+    font-size: 3rem;
+}
+
+.navbar-collapse{
+    background-color: #f9f9f9;
+}
+/* FOOTER */
+.f-info{
+    display: flex;
+    justify-content: center;
+    align-content: space-evenly;
+    height: 6rem;
+    flex-wrap: wrap;
+    background-color: #f9f9f9;
+}
+.f-socials{
+    width: 100%;
+    text-align: center;
+}
+.f-links{
+    width: 100%;
+    text-align: center;
+}
+
+
+
+/* CARDS */
+.listings-img{
+    border-radius: 1.5rem;
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 18rem;
+}
+.link{
+ text-decoration: none!important;
+}
+.card-body{
+    padding-top: 4px;
+    font-weight: 600;
+}
+.listing-price{
+    color: rgba(0, 0, 0, 0.67);
+    font-weight: 500;
+}
+/* card -effect(OVERLAY) */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 40;
+  color: #ffffff;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: rgb(255, 255, 255);
+}
+
+.favorite{
+    height: fit-content;
+    width: fit-content;
+    left:auto
+}
+/* GUIDE PAGE */
+.guide{
+    display: flex;    
+    justify-content: space-between;
+    object-fit: contain;
+}
+.intro{
+    margin-top:20%;
+    margin-right: 5rem;
+    font-size: 3.5rem;
+}
+
+.footer-guide{
+    height: 6rem;
+    border-top:0.4rem solid rgb(197, 200, 203) ;
+    background-color: #f2f2f2;
+    width: 100%;
+}
+.start-btn{
+    background-color: #ff385c !important;
+    margin: 1rem !important;
+    border: none !important;
+    color: white !important;
+}
+.rounded-pill{
+    width: 6rem;
+    margin: 1rem;
+}
+
+.steps{
+    font-weight: 500;
+    display: flex;
+    font-size:1.8rem ;   
+    flex-direction: column;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+}
+.sub-title{
+    font-size: 1.3rem;
+    font-weight: 400;
+    color:rgba(0, 0, 0, 0.546) ;
+    margin-bottom: 2rem;
+}
+.steps-list{
+    margin-top:1rem;
+    width:100%;
+    margin-bottom:18vh;
+}
+
+ @media(max-width:800px){
+    .guide{
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 2rem;
+        width: 90vw;
+        margin: 0;
+        padding: 0;
+    }
+    .intro p{
+        padding: 2px;
+        font-size: 2.5rem;
+    }
+    .intro{
+        margin: 2px 1rem;
+    }
+
+    .steps p{
+        font-size: 1.3rem;
+    }
+    .sub-title{
+      font-size: 1rem;
+    }
+    .steps-list{
+        margin-top: 2rem;
+    }
+}  
+
+
+
+/*EDIT PAGE*/
+.edit-form{
+    margin: 1rem;
+    width: 100%;
+}
+.edit-card{
+    object-fit: contain;
+    height:max-content;
+    border-radius: 2rem;
+    transition:ease-in-out 0.5s;
+    box-shadow: 0.2px 0.2px 7px 1px;   
+}
+.edit-card:hover{
+    font-weight: 700;
+    transform: scale(1.01);
+}    
+.edit-btn{
+    background-color: #ff385c !important;
+    border-color: #ff385c !important;
+    color: white !important;
+    box-shadow:none !important;
+
+}
+ 
+#floatingTextarea2{
+    min-height: fit-content !important
+}
+
+/* SHOW PAGE */
+.show-listing-card{
+    margin: 2px auto;
+    width:100%;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    transition: transform 0.9s ease-in-out;
+}
+.show-listing-card:hover{
+    transform: scale(1.02);
+}
+.details{
+    border: 0;
+    font-size: 1rem;
+} 
+ .show-img{
+    width: 100%;
+    border-radius: 0.5rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    object-fit: cover;
+    height: 22rem;
+}
+.show-listing-card:hover{
+    box-shadow: 0.01px 0.01px 10px 2px;
+}
+
+@media(max-width:768px){
+    .show-listing-card{
+        width: 90%;
+    }
+}
+.show-page-editBtn{
+    color: #ff385c;
+    border-color: #ff385c !important;
+    margin: 2px !important;
+    box-shadow: none !important;
+}
+.show-page-editBtn:active{
+    background-color: #ff385c !important;
+    border-color: #ff385c !important;
+}
+.show-page-editBtn:hover{
+    background-color: #ff385c;
+    border-color: #ff385c;
+}
+.show-page-editBtn:focus-visible{
+    background-color: #ff385c;
+}
+.show-page-deleteBtn{
+    color: black;
+    border-color: black !important;
+    margin: 2px;
+    box-shadow: none !important;
+}
+.show-page-deleteBtn:hover{
+    color: white;
+    background-color: black;    
+}
+.show-page-deleteBtn:active{
+    background-color: black !important;
+}
+.show-page-deleteBtn:focus-visible{
+    background-color: black !important;
+}
+.edit-del-btn{
+    margin:8px auto;
+    width: fit-content;
+}
+
+/* ERROR PAGE */
+.error-logo{
+    height:4vh;
+    width:4vh;
+    min-width: 1rem;
+    min-height: 1rem;
+}
+.error-card{
+    width: 95vw;
+    font-size: medium;
+    flex: 1;
+    height: 50%;
+    object-fit: contain;
+}
+.error-img{
+    height: 30vw;
+}
+.error-title{
+    color: #ff385c;
+    font-size:large;
+    font-weight: bold;
+}
+@media(min-height:630px){
+    .error-card{
+        height: 80vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* REVIEWS */
+
+.rating{
+    border: 0 !important;
+    background-color: white !important;
+}
+
+.star-rating{
+    font-size: 1.6rem !important;
+    color: black;
+    transition: 0.1s ease-in all;
+}
+
+.postReview-btn{
+    background-color: #ff385c !important;
+    margin: 1rem;
+    border: none !important;
+    color: white !important;
+}
+.reviewForm-title{
+    background-color: #ff385ddd;
+    color: white;
+}
+
+.btn-close:focus{
+    box-shadow:none;
+}
+
+.review-header{
+    padding:0rem 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+}
+.review{
+    height: 12.5rem;
+    border: 0;
+    background-color: #f9f9f9;
+    transition: 0.5s ease-in-out all;
+}
+
+.review:hover{
+    box-shadow: 0.5px 0.2px 9px 0.2px;
+    height: 12.05rem;
+}
+.review-info{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    background-color:#f5f5f5;
+    border-bottom: 0;
+}
+.review-comment{
+    height: 6.2rem;
+    overflow-y:auto;
+    scrollbar-color: transparent ;
+    scrollbar-width: thin;
+}
+.delete-review-btn{
+    border-color:#f9f9f9 !important ;
+}
+#delete-reviewFinal{
+    background-color: #ff385c !important;
+    margin: 1rem;
+    border: none !important;
+    color: white !important;
+}

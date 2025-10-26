@@ -1,0 +1,40 @@
+<div>
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header reviewForm-title">
+                <h1 class="modal-title fs-5" id="reviewModalLabel"><b>POST A REVIEW</b></h1>
+                <button type="button" class="btn-close review-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+            </div>
+            <form action="/listings/<%=listing._id%>/reviews" method="POST" class="needs-validation" novalidate>
+                <div class="modal-body" id="reviewInput">
+                    <div class="mb-3">
+                        <div class="d-flex ps-2">
+                            <%for(let i=1;i<=5;i++){%>
+                                <input type="radio" name="review[rating]" value="<%=i%>" class="btn-check star-input" id="star-<%=i%>" autocomplete="off" <%= i===1 ? 'required' :'' %>>
+                                <label class="btn btn-outline-primary rating" for="star-<%=i%>">
+                                    <i class="fa-regular fa-star star-rating"></i>
+                                </label><br>
+                            <%}%>
+                            <div class="invalid-feedback col-md-7 col-sm-12">
+                                Please Give Rating.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating ps-4 mt-4 mb-4 pe-4">
+                        <textarea class="form-control text-area"  name="review[comment]" placeholder="Leave a comment here" maxlength="500" id="floatingTextarea" style="height: 100px;" required></textarea>
+                        <label for="floatingTextarea" class="ms-4 form-label">Comments</label>
+                        <div class="invalid-feedback">
+                            Please share your Reviews.
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="postReview-btn btn btn-md">Post Review</button>
+                </div>
+            </form>    
+            </div>
+        </div>
+    </div>
+</div>
