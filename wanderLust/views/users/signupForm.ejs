@@ -1,0 +1,49 @@
+<%-layout("./layouts/boilerplate.ejs")%>
+<div class="row m-1" style="background-color: white;">
+    <div class="card mx-auto m-2 col-sm-12 col-md-10 p-0" >
+        <div class="card-header register-title mb-4 p-3 ">
+            <h4 class="m-0">Sign up to Wanderlust </h4>
+        </div>
+        <form action="/signup" class="signup-form needs-validation" method="POST" novalidate>
+            <div class="card-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="signupInputGroup2" name="username" required>
+                    <label for="signupInputGroup2">Username</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid username.
+                        </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="signupInput2" name="email" required>
+                    <label for="signupInput2">Email address</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid email.
+                        </div>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="signupPassword2" name="password" required>
+                    <label for="signupPassword2">Password</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid password.
+                        </div>
+                </div>
+                <div class="alert alert-primary mt-3 d-flex register-alert d-flex flex-wrap" role="alert">
+                    <h6 class="d-inline" style="white-space: nowrap;">Already, a registered user ? </h6>
+                    <a onclick="changeRoute(event, '/loginModal');" class="alert-link" style="white-space: nowrap;cursor: default;">Log In</a>
+                </div>
+            </div>   
+        </form>
+        <div class="card-footer" style="display: flex; justify-content: end;">
+            <button type="submit" class="btn btn-primary signup-btn register-btn w-100">SIGN UP</button>
+        </div>
+    </div>
+</div>

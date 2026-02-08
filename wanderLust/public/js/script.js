@@ -19,13 +19,10 @@
 })()
 
 const starBtns = document.querySelectorAll(".star-rating");
-console.log(starBtns);
 const starInputs = document.querySelectorAll(".star-input");
-console.log(starInputs);
 
 starInputs.forEach((input,index)=>{
   input.addEventListener("change",()=>{
-    console.log(index);
     // Reset all stars first
       starBtns.forEach((btn) => {
           btn.classList.remove("fa-solid", "text-warning");
@@ -39,20 +36,6 @@ starInputs.forEach((input,index)=>{
   }) 
 })
 
-const Modal1 = document.getElementById('reviewModal')
-const Input1 = document.getElementById('reviewInput')
-
-Modal1.addEventListener('shown.bs.modal', () => {
-  Input1.focus();
-})
-const Modal2 = document.getElementById('confirmRequest')
-const Input2 = document.getElementById('confirmation')
-
-Modal2.addEventListener('shown.bs.modal', () => {
-  Input2.focus();
-})
-
-
 const closeBtn=document.querySelectorAll(".close-btn");
 
 closeBtn.forEach((close,index)=>{
@@ -64,18 +47,64 @@ closeBtn.forEach((close,index)=>{
   })
 })
 
-function addDeleteListeners(){
-let deleteReviewBtn = document.querySelectorAll(".delete-review-btn");
-let deleteFinalBtn = document.querySelector("#delete-reviewFinal")
-deleteReviewBtn.forEach((btn)=>{
-  btn.addEventListener("click",()=>{
-    console.log("clicked")
-    let formId = btn.closest("form").getAttribute("id");
-    console.log(formId);
+let confirmDeleteReview = document.getElementById("confirmDeleteReview");
 
-    deleteFinalBtn.setAttribute("form",`${formId}`);
+function addDeleteReviewListeners(){
+  let deleteReviewBtn = document.querySelectorAll(".delete-review-btn");
+  let deleteFinalBtn = document.querySelector("#delete-reviewFinal")
+  deleteReviewBtn.forEach((btn)=>{
+    btn.addEventListener("click",()=>{
+      let formId = btn.closest("form").getAttribute("id");
+      deleteFinalBtn.setAttribute("form",`${formId}`);
+    })
   })
-})
+}
+if(confirmDeleteReview){confirmDeleteReview.addEventListener("show.bs.modal",addDeleteReviewListeners);}
+let confirmDeleteListing = document.getElementById("confirmDeleteListing");
+
+function addDeleteListingListeners(){
+  let deleteListing= document.querySelectorAll("#deleteListing");
+  let deleteFinalBtn = document.querySelector("#delete-listingFinal");
+  deleteListing.forEach((btn)=>{
+    btn.addEventListener("click",()=>{
+      let formId = btn.closest("form").getAttribute("id");
+      deleteFinalBtn.setAttribute("form",`${formId}`);
+    })
+})}
+if(confirmDeleteListing){
+  confirmDeleteListing.addEventListener("show.bs.modal",addDeleteListingListeners)
+};
+
+function changeRoute(event, newRoute) {
+    event.preventDefault();//prevent default behaviour
+
+    const stateObj = { newRoute };
+    history.pushState(stateObj,newRoute);//stops reloading
+
+    updateContent(newRoute);
 }
 
-addDeleteListeners();
+function updateContent(url){
+  if(url == "/confirmRequest"){ 
+    const confirmModal = new bootstrap.Modal(document.querySelector("#confirmDelete"));
+    confirmModal.show();
+  }else if(url == "/reviewModal"){
+    const reviewModal = new bootstrap.Modal(document.querySelector("#reviewModal"));
+    reviewModal.show();
+  }else if(url == "/loginModal"){
+      if(window.location.pathname != "/login" && window.location.pathname !="/signup"){
+        const loginModal = new bootstrap.Modal(document.querySelector("#loginModal"));
+        loginModal.show();
+      }else{
+        window.location.href = "/login";
+      }
+  }else if( url == "/signupModal"){
+    if( window.location.pathname != "/login" && window.location.pathname != "/signup" ){
+      const signupModal = new bootstrap.Modal(document.querySelector("#signupModal"));
+      signupModal.show();
+    }else {
+      window.location.href = "/signup";
+    }
+  }
+}
+

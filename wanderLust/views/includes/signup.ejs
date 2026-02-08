@@ -1,0 +1,54 @@
+<div class="modal fade register-modal" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" >
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header register-title">
+                <h1 class="modal-title fs-5">Sign up to Wanderlust </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/signup" method="POST" class="needs-validation" novalidate>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="signupInputGroup1" name="username" required>
+                            <label for="signupInputGroup1">Username</label>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid username.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="signupInput1" name="email" required>
+                        <label for="signupInput1">Email address</label>
+                        <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid Email.
+                        </div>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="signupPassword1" name="password" required>
+                        <label for="signupPassword1">Password</label>
+                        <div class="valid-feedback">
+                                Looks good!
+                        </div>
+                        <div class="invalid-feedback">
+                            Please enter a valid password.
+                        </div>
+                    </div>
+                    <div class="alert alert-primary mt-3 d-flex register-alert" role="alert">
+                        <h6 class="d-inline" style="white-space: nowrap;">Already, a registered user ? </h6>
+                        <a onclick="changeRoute(event,'/loginModal')" class="alert-link" data-bs-dismiss="modal" style="white-space: nowrap; cursor: pointer;">Log In</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary signup-btn register-btn">SIGN UP</button>
+                </div>
+            </form>    
+        </div>
+    </div>
+</div>

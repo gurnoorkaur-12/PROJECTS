@@ -1,0 +1,39 @@
+<%-layout("./layouts/boilerplate.ejs")%>
+<div class="row m-1" style="background-color: white;">
+    <div class="card mx-auto m-2 col-sm-12 col-md-9 p-0">
+        <div class="card-header register-title mb-4 p-3 ">
+            <h4 class="m-0">Login to Wanderlust </h4>
+        </div>
+        <form action="/login" class="login-form needs-validation" method="POST" novalidate>
+            <div class="card-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="loginIdentifier" name="identifier" required>
+                    <label for="loginIdentifier">Username or Email</label>
+                    <div class="invalid-feedback">
+                        Please enter a valid username or email.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    <label for="loginPassword">Password</label>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="alert alert-primary mt-3 d-flex register-alert d-flex flex-wrap" role="alert">
+                    <h6 class="d-inline" style="white-space: nowrap;">New to Wanderlust ?</h6>
+                    <a onclick="changeRoute(event, '/signupModal');" class="alert-link me-4" style="white-space: nowrap; cursor: pointer;">Sign up</a>
+                </div>
+            </div>   
+            <div class="card-footer " style="display: flex; justify-content: end;">
+                <button type="submit" class="btn btn-primary login-btn register-btn" style="white-space: nowrap;width:100%;">Log In</button>
+            </div>
+        </form>
+    </div>
+</div>

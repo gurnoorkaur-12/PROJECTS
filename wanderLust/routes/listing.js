@@ -1,93 +1,31 @@
 const express = require('express');
 const router = express.Router();
-const Listing=require("../models/listing.js")
 const wrapAsync=require("../utils/wrapAsync.js");
-const ExpressError=require("../utils/ExpressError.js");
-const dayjs = require('dayjs');
-var relativeTime = require("dayjs/plugin/relativeTime");
-dayjs.extend(relativeTime);
+const listingController = require("../controllers/listings.js")
+const {validateListing }= require("../middleware/listings.js");
 
-//Validation for Server Side ( using Joi)
-const { listingSchema }=require("../schema.js");
-
-const validateListing = (req,res,next)=>{
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-    let errorMsg=error.details.map((ele)=>
-        ele.message
-    ).join(",");
-        throw new ExpressError(400,errorMsg)
-    }else{
-        next();
-    } 
-}
-
-
-//INDEX ROUTE
-router.get("/",wrapAsync(async (req,res)=>{
-    let listings=await Listing.find();
-    res.render("./listings/index.ejs",{listings});
-}));
+router  
+    .route("/")
+        //INDEX ROUTE
+        .get(wrapAsync(listingController.index))
+        //CREATE ROUTE
+        .post(validateListing,wrapAsync(listingController.addListing))
 
 //NEW ROUTE
-router.get("/new/guide",(req,res)=>{
-    res.render("./listings/guide.ejs");
-});
-router.get("/new",(req,res)=>{
-    res.render("./listings/new.ejs");
-})
-
+router.get("/new/guide",listingController.showGuide);
+router.get("/new",listingController.renderNewForm);
 
 //SHOW ROUTE
-router.get("/:id",wrapAsync(async(req,res)=>{
-    let {id}=req.params;
-    let listing=await Listing.findById(id);
-    let {reviews} = await listing.populate({
-        path:"reviews",
-        options:{
-            sort: { createdAt: -1 } 
-        }
-    }) ;
-    let reviewsObj = reviews.map(review => ({
-        ...review.toObject(),
-        relativeDate : dayjs(review.createdAt).fromNow()
-    }))
-    res.render("./listings/show.ejs",{listing,reviews:reviewsObj}); 
-}));
-
-
-//CREATE ROUTE
-router.post("/",validateListing,wrapAsync(async(req,res,next)=>{
-    const newListing=new Listing(req.body.listing);
-    await newListing.save();   
-    res.redirect("/listings");
-}))
-
+router.get("/:id",wrapAsync(listingController.showListing));
 
 //EDIT ROUTE
-router.get("/:id/edit",wrapAsync(async (req,res)=>{
-    let {id}=req.params;
-    let listing=await Listing.findById(id);
-    res.render("./listings/edit.ejs",{listing});
-}))
+router.get("/:id/edit",wrapAsync(listingController.renderEditForm));
 
-
-//UPDATE ROUTE
-router.put("/:id",validateListing,wrapAsync(async(req,res)=>{
-    let {id}=req.params;
-    await Listing.findByIdAndUpdate({_id:id},{...req.body.listing},{new:false});
-    if(!req.body.listing){
-        throw new ExpressError(400,"Send valid data for listing"); 
-    }
-    res.redirect(`/listings/${id}`);
-}));
-
-
-//DELETE ROUTE
-router.delete("/:id",wrapAsync(async (req,res)=>{
-    let {id}=req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-}));
+router
+    .route("/:id")
+        //UPDATE ROUTE
+        .put(validateListing,wrapAsync(listingController.updateListing))
+        //DELETE ROUTE
+        .delete(wrapAsync(listingController.destroyListing))
 
 module.exports = router;

@@ -1,5 +1,5 @@
 <%-layout("/layouts/boilerplate.ejs")%>
-    <div class="edit-card card " style=" background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255,255,255, 0.5)),url(<%=listing.image%>);">
+    <div class="edit-card card mb-4" style=" background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255,255,255, 0.5)),url(<%=listing.image%>);">
             <form class="edit-form needs-validation" method="POST" action="/listings/<%=listing.id%>?_method=PUT" novalidate>
                 <div class="row ">
                     <div class="form-floating col-8 offset-md-2 mb-4">

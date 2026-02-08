@@ -1,0 +1,52 @@
+<div class="modal fade register-modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header register-title">
+                <h1 class="modal-title fs-5">Login to Wanderlust </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/login" class="login-form needs-validation" method="POST" novalidate>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="loginIdentifier" name="identifier" required>
+                        <label for="loginIdentifier">Username or Email</label>
+                        <div class="invalid-feedback">
+                            Please enter a valid username or email.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                        <label for="loginPassword">Password</label>
+                        <div class="invalid-feedback">
+                            Please enter a valid password.
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="alert alert-primary mt-3 d-flex register-alert d-flex flex-wrap" role="alert">
+                        <h6 class="d-inline" style="white-space: nowrap;">New to Wanderlust ? </h6>
+                        <a onclick="changeRoute(event, '/signupModal');" data-bs-dismiss="modal" class="alert-link me-4" style="white-space: nowrap; cursor: default;">Sign up</a>
+                    </div>
+                </div>      
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary login-btn register-btn" style="white-space: nowrap;">Log In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let openModal = "<%= showLoginModal.length > 0 %>";
+        console.log(openModal);
+        if(openModal == "true"){
+            changeRoute(event,"/loginModal");
+        }
+    })
+</script>

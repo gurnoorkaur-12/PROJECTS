@@ -1,0 +1,50 @@
+<%if(success && success.length!=0){%>
+    <div class="toast-container bottom-0 end-0 p-3 position-fixed">
+        <div class="toast align-items-center border-0" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
+            <div class="toast-header" style="background-color: #ff385ddd;">
+                <i class="explore fa-regular fa-compass logo me-2" style="font-size: 2rem;color: white;"></i>
+                <strong class="me-auto" style="color: white;">Wanderlust</strong>
+                <small><%=new Date().toLocaleTimeString()%></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="d-flex" style="background-color: #f9f9f9;">
+                <div class="toast-body" >
+                   <b><%= success %></b>
+                </div>
+            </div>
+        </div>
+    </div>
+<%}%>
+
+<%if(error && error.length!=0){%>
+    <div class="toast-container bottom-0 end-0 p-3 position-fixed">
+        <div class="toast align-items-center border-0" role="alert" aria-live="assertive" id="errorToast" aria-atomic="true">
+            <div class="toast-header" style="background-color: #ff385ddd;">
+                <i class="explore fa-regular fa-compass logo me-2" style="font-size: 2rem; color: white;"></i>
+                <strong class="me-auto" style="color: white;">Wanderlust</strong>
+                <small><%=new Date().toLocaleTimeString()%></small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="d-flex" style="background-color: #f9f9f9;">
+                <div class="toast-body" >
+                   <%= error %>
+                </div>
+            </div>
+        </div>
+    </div>
+<%}%>
+
+<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+    let toastEl = document.getElementById("errorToast");
+    if(!toastEl){
+        toastEl = document.getElementById("successToast");
+    }
+    if(toastEl){
+        const toast = bootstrap.Toast.getOrCreateInstance(toastEl, {
+        delay: 8000
+        });
+        toast.show();
+    }
+})
+</script>
