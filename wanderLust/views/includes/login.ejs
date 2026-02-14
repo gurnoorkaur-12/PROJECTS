@@ -7,6 +7,7 @@
             </div>
             <form action="/login" class="login-form needs-validation" method="POST" novalidate>
                 <div class="modal-body">
+                    <input type="hidden" class="loginRedirectUrl" name="redirectUrl" value="">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="loginIdentifier" name="identifier" required>
                         <label for="loginIdentifier">Username or Email</label>
@@ -44,9 +45,16 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         let openModal = "<%= showLoginModal.length > 0 %>";
-        console.log(openModal);
         if(openModal == "true"){
             changeRoute(event,"/loginModal");
         }
     })
+    
+    document.addEventListener("DOMContentLoaded",()=>{
+        let input = document.querySelector(".loginRedirectUrl");
+        if(input && window.location.pathname != "/login"){
+            input.value = window.location.pathname;
+        }
+    })
 </script>
+

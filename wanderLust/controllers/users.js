@@ -7,6 +7,7 @@ module.exports.renderSignupForm = async(req,res,next)=>{
     res.render("./users/signupForm.ejs");
 }
 module.exports.signup = async(req,res)=>{
+    let redirectUrl = res.locals.redirectUrl ||req.body.redirectUrl || "/listings"; 
     try{
         const {username,email,password} = req.body;
         const newUser  = new User({email,username});
@@ -14,13 +15,13 @@ module.exports.signup = async(req,res)=>{
         req.login(registeredUser, function(err) {
             if (err) { return next(err); }
             req.flash("success",`Welcome to Wanderlust ${username} !`);
-            return res.redirect("/listings");
+            return res.redirect(redirectUrl);
         });
     }catch(err){
         req.flash("error",err.message);
         if(await User.findOne({email:req.body.email})){
             req.flash("showLoginModal",true);
-            res.redirect("/listings");
+            res.redirect(redirectUrl);
         }
     }
 }
@@ -31,22 +32,16 @@ module.exports.renderLoginForm = async(req,res,next)=>{
 
 module.exports.login = async(req,res,next)=>{
         req.flash("success",'Welcome back to Wanderlust');
-        res.redirect("/listings");
+        res.redirect(res.locals.redirectUrl || req.body.redirectUrl || "/listings");
+        delete res.locals.redirectUrl;
 };
 
-module.exports.redirectLogout = async(req,res,next) =>{
-    req.logout((err)=>{
-        if(err){
-            return next(err);
-        }
-    })
-}
 module.exports.logout = async(req,res,next)=>{
+    let redirectUrl = res.locals.redirectUrl || req.body.redirectUrl ||"/listings";
     req.logout((err)=>{
         if(err){
             return next(err);
         }
     })
-    res.redirect("/listings");
-
+    res.redirect(redirectUrl);
 }

@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-const { request } = require('http');
+const {saveRedirectUrl} = require("./middleware/users.js");
 let port=8080;
 
 main()
@@ -62,6 +62,9 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user; 
     res.locals.showLoginModal = req.flash("showLoginModal");
+    res.locals.redirectUrl = req.redirectUrl;
+    res.locals.showReviewModal = req.flash("showReviewModal");
+    res.locals.showConfirmModal = req.flash("showConfirmModal");
     next();
 })
 

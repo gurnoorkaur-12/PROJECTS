@@ -25,12 +25,13 @@
                     <%if(currUser){%>
                         <li class="nav-item" id="logout-form">
                             <form method="POST" action="/logout">
-                                <button class="nav-link"><b>LOG OUT</b></button>
+                                <input type="hidden" class="redirectUrl" name="redirectUrl" value="">
+                                <button class="nav-link" id = "logout-btn"><b>LOG OUT</b></button>
                             </form>
                         </li>
                     <%}else{%>
                         <li class="nav-item">
-                            <a class ="nav-link signup-link" onclick="changeRoute(event,'/signupModal')" style="cursor: default;" data-bs-dismiss="offcanvas"><b>SIGN UP</b></a>
+                                <a class ="nav-link signup-link" onclick="changeRoute(event,'/signupModal')" style="cursor: default;" data-bs-dismiss="offcanvas"><b>SIGN UP</b></a>
                         </li>
                         <li class="nav-item">
                             <a class ="nav-link login-link" onclick="changeRoute(event,'/loginModal')" style="cursor: default;" data-bs-dismiss="offcanvas"><b>LOG IN</b></a>
@@ -42,4 +43,11 @@
     </div>
 </nav>
 
-
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+        let input = document.querySelector(".redirectUrl");
+        if(input && window.location.pathname != "/logout"){
+            input.value = window.location.pathname;
+        }
+    })
+</script>

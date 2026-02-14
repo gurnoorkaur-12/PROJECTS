@@ -20,16 +20,19 @@ module.exports.isUsername = async(req,res,next)=>{
 
 }
 module.exports.isAuthenticated = passport.authenticate('local',{
-        failureRedirect:"/listings",
+        failureRedirect:"/login",
         failureFlash:true
 });
 module.exports.isLoggedIn = (req,res,next)=>{
     if(!req.isAuthenticated()){
-        try{
-            req.flash("showLoginModal",true);
-        }catch(err){
-            console.log(err);
-        }
+        req.session.redirectUrl = req.originalUrl;
+        return res.redirect("/login");
+    }
+    next();
+}
+module.exports.saveRedirectUrl = (req,res,next) =>{
+    if ( req.session.redirectUrl ) {
+        res.locals.redirectUrl = req.session.redirectUrl ;
     }
     next();
 }

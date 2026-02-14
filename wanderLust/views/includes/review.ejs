@@ -13,7 +13,7 @@
             <p class="review-date m-0 " style="white-space: nowrap;">
               <%=reviews[i].relativeDate%>
             </p> 
-            <form id="deleteReview<%=reviews[i]._id%>" action="/listings/<%=listing._id%>/reviews/<%=reviews[i]._id%>?_method=DELETE" method="POST">
+            <form id="deleteReview<%=reviews[i]._id%>" action="/listings/<%=listing._id%>/reviews/<%=reviews[i]._id%>/confirmRequest" method="GET">
               <button type= "submit" class="btn btn-sm ms-2 delete-review-btn pt-1">
                 <span class="material-symbols-outlined " style="color: #dc3545;">
                   delete
@@ -83,7 +83,7 @@
                     <p class="review-date m-0">
                       ${review.relativeDate}
                     </p> 
-                    <form id="deleteReview${review._id}" action="/listings/${id}/reviews/${review._id}?_method=DELETE" method="POST">
+                      <form id="deleteReview${review._id}" action="/listings/${id}/reviews/${review._id}/confirmRequest" method="GET">
                       <button type= "submit" class="btn btn-sm ms-2 delete-review-btn pt-1">
                         <span class="material-symbols-outlined " style="color: #dc3545;">
                           delete

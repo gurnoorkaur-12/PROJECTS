@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({ mergeParams:true });
 const wrapAsync=require("../utils/wrapAsync.js");
 const userController = require("../controllers/users.js");
-const { isUsername, isAuthenticated } = require('../middleware/users.js');
+const {  isUsername, isAuthenticated ,saveRedirectUrl } = require('../middleware/users.js');
 
 router
     .route("/signup")
@@ -12,7 +12,7 @@ router
 router
     .route("/login")
         .get(userController.renderLoginForm)
-        .post(isUsername ,isAuthenticated,wrapAsync(userController.login));
+        .post(saveRedirectUrl,isUsername ,isAuthenticated,wrapAsync(userController.login));
 
 router
     .post("/logout",wrapAsync(userController.logout));

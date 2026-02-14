@@ -47,34 +47,6 @@ closeBtn.forEach((close,index)=>{
   })
 })
 
-let confirmDeleteReview = document.getElementById("confirmDeleteReview");
-
-function addDeleteReviewListeners(){
-  let deleteReviewBtn = document.querySelectorAll(".delete-review-btn");
-  let deleteFinalBtn = document.querySelector("#delete-reviewFinal")
-  deleteReviewBtn.forEach((btn)=>{
-    btn.addEventListener("click",()=>{
-      let formId = btn.closest("form").getAttribute("id");
-      deleteFinalBtn.setAttribute("form",`${formId}`);
-    })
-  })
-}
-if(confirmDeleteReview){confirmDeleteReview.addEventListener("show.bs.modal",addDeleteReviewListeners);}
-let confirmDeleteListing = document.getElementById("confirmDeleteListing");
-
-function addDeleteListingListeners(){
-  let deleteListing= document.querySelectorAll("#deleteListing");
-  let deleteFinalBtn = document.querySelector("#delete-listingFinal");
-  deleteListing.forEach((btn)=>{
-    btn.addEventListener("click",()=>{
-      let formId = btn.closest("form").getAttribute("id");
-      deleteFinalBtn.setAttribute("form",`${formId}`);
-    })
-})}
-if(confirmDeleteListing){
-  confirmDeleteListing.addEventListener("show.bs.modal",addDeleteListingListeners)
-};
-
 function changeRoute(event, newRoute) {
     event.preventDefault();//prevent default behaviour
 
@@ -108,3 +80,18 @@ function updateContent(url){
   }
 }
 
+document.querySelectorAll("form").forEach((ele)=>{
+  ele.addEventListener("submit", () => {
+    const scrollY = window.scrollY;
+    sessionStorage.setItem("scrollPos", scrollY);
+  });
+
+})
+
+window.addEventListener("load", () => {
+    const scrollPos = sessionStorage.getItem("scrollPos");
+    if (scrollPos) {
+        window.scrollTo(0, parseInt(scrollPos));
+        sessionStorage.removeItem("scrollPos");
+    }
+});

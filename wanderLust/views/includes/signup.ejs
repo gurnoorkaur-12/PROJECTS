@@ -7,6 +7,7 @@
             </div>
             <form action="/signup" method="POST" class="needs-validation" novalidate>
                 <div class="modal-body">
+                    <input type="hidden" class="signupRedirectUrl" name="redirectUrl" value="">
                     <div class="input-group mb-3">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="signupInputGroup1" name="username" required>
@@ -52,3 +53,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded",()=>{
+        let input = document.querySelector(".signupRedirectUrl");
+        if(input && window.location.pathname != ("/signup")){
+            input.value = window.location.pathname;
+        }
+    })
+</script>

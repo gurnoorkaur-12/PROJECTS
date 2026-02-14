@@ -16,6 +16,13 @@ module.exports.addReview = async(req,res)=>{
     res.redirect(`/listings/${id}`);
 }
 
+module.exports.showReviewForm = async(req,res) => {
+  let {id} = req.params
+  req.flash("showReviewModal",true);
+  res.redirect(`/listings/${id}`);
+}
+
+
 module.exports.destroyReview = async(req,res)=>{
     let {id,reviewId} = req.params;
     await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});   
@@ -42,4 +49,9 @@ module.exports.showMoreReviews = async(req,res)=>{
         relativeDate : dayjs(review.createdAt).fromNow()
     }))
   res.json(reviewsObj);
+}
+module.exports.confirmRequest = async(req,res)=>{
+    let {id,reviewId} = req.params;
+    req.flash("showConfirmModal",{title:"REVIEW ",url:`/listings/${id}/reviews/${reviewId}?_method=DELETE`});
+    res.redirect(`/listings/${id}`);
 }

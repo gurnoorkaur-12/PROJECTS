@@ -1,0 +1,28 @@
+<%if(showConfirmModal.length != 0){%>
+<div class="modal fade" id="confirmDelete" data-bs-keyboard="false" tabindex="-1" aria-labelledby="confirmRequestLabel">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="confirmRequestLabel" style="color: ff385c; margin:0.5rem auto;">DELETE</h1>
+      </div>
+      <div class="modal-body mx-auto mt-4 mb-4" id="confirmation">
+        ARE YOU SURE YOU WANT TO DELETE THIS <%=showConfirmModal[0].title%>
+      </div>
+      <div class="modal-footer row" style="justify-content: center;">
+        <button type="button" class="btn btn-secondary col-4" data-bs-dismiss="modal">NO</button>
+        <form action=<%=showConfirmModal[0].url%> method="POST" class="col-4">
+            <button type="submit" class="btn btn-primary col-12" id="delete-Final" style="background-color: #ff385c;border-color: #ff385c;">YES</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<%}%>
+<script>
+  document.addEventListener("DOMContentLoaded",()=>{
+    let openModal = "<%= showConfirmModal.length > 0 %>";
+    if(openModal == "true"){
+        changeRoute(event,"/confirmRequest");
+    }
+  })
+</script>

@@ -1,5 +1,5 @@
 <% layout("/layouts/boilerplate")%>
-<body>
+<div>
    <div class="show-listing-card card">
         <div class="row g-0">
             <div class="col-md-5 col-sm-12">
@@ -35,8 +35,8 @@
             <form action="/listings/<%=listing._id%>/edit" method="get">
                 <button class="btn btn-outline-primary show-page-editBtn">EDIT LISTING</button>
             </form>
-            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                <button class="btn btn-outline-primary show-page-deleteBtn">DELETE LISTING</button>
+            <form method="GET" action="/listings/<%=listing._id%>/confirmRequest">
+                <button class=" submit btn btn-outline-primary show-page-deleteBtn">DELETE LISTING</button>
             </form>
         </div>
     </div>
@@ -46,8 +46,10 @@
             <h2>Reviews</h2>
             <img src="/images/review.svg" alt="reviews" class="ms-2" style="object-fit: contain;">
         </div>
-        <button type="button" class="postReview-btn btn btn-lg" data-bs-toggle="modal" data-bs-target="#reviewModal" data-bs-whatever="@mdo">Leave a Review</button>
-        </div>
+        <form action="/listings/<%=listing._id%>/reviews" method="GET">
+            <button type="submit" class="leave-review-btn postReview-btn btn btn-lg">Leave a Review</button>
+        </form>
+    </div>
         <%-include("../includes/reviewForm.ejs",{listing})%>
         <%if(reviews.length){%>
             <%-include("../includes/review.ejs",{listing,reviews})%>
@@ -62,4 +64,4 @@
             </div>
         <%}%>
     </div>
-</body>
+</div>

@@ -72,3 +72,8 @@ module.exports.destroyListing = async (req,res)=>{
     }
     res.redirect(`/listings`);}
 
+module.exports.confirmRequest = async(req,res)=>{
+    let {id} = req.params;
+    req.flash("showConfirmModal",{title:"LISTING ",url:`/listings/${id}?_method=DELETE`});
+    res.redirect(`/listings/${id}`);
+}
