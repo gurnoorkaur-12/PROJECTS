@@ -1,4 +1,5 @@
 const mongoose =require('mongoose');
+const user = require('./user');
 const { Schema }=mongoose;
 
 const ReviewSchema = new Schema({
@@ -15,6 +16,10 @@ const ReviewSchema = new Schema({
     createdAt:{
         type : Date,
         default : Date.now
+    },
+    author:{
+        type:Schema.Types.ObjectId,
+        ref:"User"
     }
 })
 

@@ -3,23 +3,23 @@ const router = express.Router({ mergeParams:true });
 const wrapAsync=require("../utils/wrapAsync.js");
 const validateReview = require("../middleware/reviews.js");
 const reviewController = require("../controllers/reviews.js");
-const { isLoggedIn } = require('../middleware/users.js');
+const { isLoggedIn, isAuthor } = require('../middleware/users.js');
 
 //Review Route
 //Post REVIEW route
 router  
     .route("/")
         .get(isLoggedIn,wrapAsync(reviewController.showReviewForm))
-        .post(validateReview,wrapAsync(reviewController.addReview));
+        .post(isLoggedIn,validateReview,wrapAsync(reviewController.addReview));
 
 // DELETE REVIEW ROUTE
-router.delete("/:reviewId",isLoggedIn,wrapAsync(reviewController.destroyReview));
+router.delete("/:reviewId",isLoggedIn,isAuthor,wrapAsync(reviewController.destroyReview));
 
 //SHOW MORE REVIEWS
 router.get("/loadreviews",wrapAsync(reviewController.showMoreReviews));
 
 
 //CONFIRM REQUEST ROUTE
-router.get("/:reviewId/confirmRequest",isLoggedIn,wrapAsync(reviewController.confirmRequest));
+router.get("/:reviewId/confirmRequest",isLoggedIn,isAuthor,wrapAsync(reviewController.confirmRequest));
 
 module.exports = router;

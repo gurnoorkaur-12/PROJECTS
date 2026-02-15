@@ -4,7 +4,7 @@
       <div class="card review">
         <div class="review-info">
           <div class="text-primary-emphasis pt-1 ms-1" style="font-size: large;">
-            Person
+            @<%=reviews[i].author.username%>
           </div>
           <div class="d-flex col justify-content-end opacity-75 align-items-center">
             <div class="material-symbols-outlined text-danger">
@@ -13,6 +13,7 @@
             <p class="review-date m-0 " style="white-space: nowrap;">
               <%=reviews[i].relativeDate%>
             </p> 
+            <%if(currUser && currUser._id.equals(reviews[i].author._id)){%>
             <form id="deleteReview<%=reviews[i]._id%>" action="/listings/<%=listing._id%>/reviews/<%=reviews[i]._id%>/confirmRequest" method="GET">
               <button type= "submit" class="btn btn-sm ms-2 delete-review-btn pt-1">
                 <span class="material-symbols-outlined " style="color: #dc3545;">
@@ -20,6 +21,7 @@
                 </span>
               </button>
             </form>
+            <%}%>
           </div>   
         </div>  
         <div class="card-body">
@@ -74,7 +76,7 @@
               <div class="card review">
                 <div class="review-info">
                   <div class="text-primary-emphasis pt-1 ms-1" style="font-size: large;">
-                    Person
+                    @${review.author}
                   </div>
                   <div class="d-flex col justify-content-end opacity-75 align-items-center">
                     <div class="material-symbols-outlined text-danger">

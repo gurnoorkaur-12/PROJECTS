@@ -196,7 +196,7 @@
     width:100%;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    transition: transform 0.9s ease-in-out;
+    transition: transform 1.5s ease-in-out;
 }
 .show-listing-card:hover{
     transform: scale(1.02);
@@ -214,7 +214,7 @@
     height: 22rem;
 }
 .show-listing-card:hover{
-    box-shadow: 0.01px 0.01px 10px 2px;
+    box-shadow:-1px 1px 9px 0px;
 }
 
 @media(max-width:768px){
@@ -256,8 +256,14 @@
     background-color: black !important;
 }
 .edit-del-btn{
-    margin:8px auto;
+    margin-left:auto ;
+    margin-top:8px ;
     width: fit-content;
+}
+@media(max-width : 576px){
+    .edit-del-btn{
+        margin-left:2px ;
+    }
 }
 
 /* ERROR PAGE */

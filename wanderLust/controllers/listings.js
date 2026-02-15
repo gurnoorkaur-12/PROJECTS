@@ -12,6 +12,7 @@ module.exports.index = async (req,res)=>{
 
 module.exports.addListing = async(req,res,next)=>{
     const newListing=new Listing(req.body.listing);
+    newListing.owner = req.user._id;
     await newListing.save();   
     req.flash('success',"New Listing created");
     res.redirect("/listings");}
@@ -24,18 +25,17 @@ module.exports.renderNewForm = (req,res)=>{
 }
 module.exports.showListing = async(req,res)=>{
     let {id}=req.params;
-    let listing=await Listing.findById(id);
+    
+    let listing = await Listing.findById(id)
+    //nested populate
+    .populate({ path:"reviews" ,populate : ( { path : "author" }) ,  options:{ sort: {createdAt: -1} }})
+    .populate({path:"owner"});
+
     if(!listing){
         req.flash("error","Listing does not exists");
         return res.redirect("/listings");
     }
-    let {reviews} = await listing.populate({
-    path:"reviews",
-    options:{
-        sort: { createdAt: -1 } 
-    }
-    }) ;
-    let reviewsObj = reviews.map(review => ({
+    let reviewsObj = listing.reviews.map(review => ({
         ...review.toObject(),
         relativeDate : dayjs(review.createdAt).fromNow()
     }))

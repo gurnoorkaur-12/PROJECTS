@@ -10,6 +10,7 @@ const passport = require("passport");
 module.exports.addReview = async(req,res)=>{
     let {id}=req.params;
     const review = new Review(req.body.review);
+    review.author = req.user._id;
     await review.save();
     await Listing.findByIdAndUpdate(id,{$push:{reviews:review}})
     req.flash("success","Your review is posted");

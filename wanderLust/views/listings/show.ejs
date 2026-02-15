@@ -25,31 +25,39 @@
                     </li>
                     <li class="list-group-item details d-flex align-content-baseline">
                         <span class="material-symbols-outlined me-2" style="color:green;">download_done</span>
-                        &#8377;<%=listing.price.toLocaleString("en-IN")%></li>
+                        &#8377;<%=listing.price.toLocaleString("en-IN")%>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class=" edit-del-btn">
-        <div class="btn-group p-1 m-3">
-            <form action="/listings/<%=listing._id%>/edit" method="get">
-                <button class="btn btn-outline-primary show-page-editBtn">EDIT LISTING</button>
-            </form>
-            <form method="GET" action="/listings/<%=listing._id%>/confirmRequest">
-                <button class=" submit btn btn-outline-primary show-page-deleteBtn">DELETE LISTING</button>
-            </form>
+    <div class="row mt-4 mb-4">
+        <h6 class="col-sm-3 mt-4 me-4 ms-3 col-12" style="white-space: nowrap;">
+            HOSTED BY <%=listing.owner.username%>
+        </h6>
+        <%if(currUser && currUser._id.equals(listing.owner._id)){%>
+        <div class=" edit-del-btn col-sm-9 col-12">
+            <div class="btn-group p-1">
+                <form action="/listings/<%=listing._id%>/edit" method="get">
+                    <button class="btn btn-outline-primary show-page-editBtn">EDIT LISTING</button>
+                </form>
+                <form method="GET" action="/listings/<%=listing._id%>/confirmRequest">
+                    <button class=" submit btn btn-outline-primary show-page-deleteBtn">DELETE LISTING</button>
+                </form>
+            </div>
         </div>
+        <%}%>
     </div>
     <div>
-    <div class="review-header w-100">
-        <div class="d-flex">
-            <h2>Reviews</h2>
-            <img src="/images/review.svg" alt="reviews" class="ms-2" style="object-fit: contain;">
+        <div class="review-header w-100">
+            <div class="d-flex">
+                <h2>Reviews</h2>
+                <img src="/images/review.svg" alt="reviews" class="ms-2" style="object-fit: contain;">
+            </div>
+            <form action="/listings/<%=listing._id%>/reviews" method="GET">
+                <button type="submit" class="leave-review-btn postReview-btn btn btn-lg">Leave a Review</button>
+            </form>
         </div>
-        <form action="/listings/<%=listing._id%>/reviews" method="GET">
-            <button type="submit" class="leave-review-btn postReview-btn btn btn-lg">Leave a Review</button>
-        </form>
-    </div>
         <%-include("../includes/reviewForm.ejs",{listing})%>
         <%if(reviews.length){%>
             <%-include("../includes/review.ejs",{listing,reviews})%>

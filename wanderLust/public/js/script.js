@@ -79,19 +79,3 @@ function updateContent(url){
     }
   }
 }
-
-document.querySelectorAll("form").forEach((ele)=>{
-  ele.addEventListener("submit", () => {
-    const scrollY = window.scrollY;
-    sessionStorage.setItem("scrollPos", scrollY);
-  });
-
-})
-
-window.addEventListener("load", () => {
-    const scrollPos = sessionStorage.getItem("scrollPos");
-    if (scrollPos) {
-        window.scrollTo(0, parseInt(scrollPos));
-        sessionStorage.removeItem("scrollPos");
-    }
-});
