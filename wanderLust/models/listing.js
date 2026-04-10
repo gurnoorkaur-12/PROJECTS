@@ -11,9 +11,12 @@ const ListingSchema=new Schema({
         type:String,
     },
     image:{
-        type:String,
-        default:"/images/default-img.jpg",
-        set:v=>v===""?`/images/default-img.jpg`:v
+        filename:{
+            type:String,
+        },
+        url:{
+            type:String,
+        }
     },
     price:{
         type:Number,
@@ -42,9 +45,6 @@ ListingSchema.post ("findOneAndDelete",async(listing)=>{
         await Review.deleteMany({_id:{$in : listing.reviews}})
     }
 })
-
-
-
 
 const Listing=mongoose.model("Listing",ListingSchema);
 module.exports=Listing;

@@ -1,6 +1,6 @@
 <%-layout("/layouts/boilerplate.ejs")%>
-    <div class="edit-card card mb-4" style=" background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255,255,255, 0.5)),url(<%=listing.image%>);">
-            <form class="edit-form needs-validation" method="POST" action="/listings/<%=listing.id%>?_method=PUT" novalidate>
+    <div class="edit-card card mb-4" style=" background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255,255,255, 0.5)),url(<%=listing.image.url%>);">
+            <form class="edit-form needs-validation" method="POST" action="/listings/<%=listing.id%>?_method=PUT" enctype="multipart/form-data" novalidate>
                 <div class="row ">
                     <div class="form-floating col-8 offset-md-2 mb-4">
                         <input class="form-control" id="floatingInput" type="text" name="listing[title]" value="<%=listing.title%>" required>
@@ -39,11 +39,8 @@
                         </div>
                     </div>            
                     <div class="form-floating col-8  offset-md-2 mb-4">
-                        <input class="form-control" id="floatingInput" value="<%=listing.image%>" type="text" name="listing[image]" placeholder="ENTER IMG URL/LINK" required>     
-                        <label  class="ms-2" for="floatingInput">IMAGE</label>
-                        <div class="invalid-feedback">
-                            Image url can't be empty.
-                        </div>
+                        <input class="form-control pb-0" id="floatingInput" type="file" name="listing[image]" placeholder="ENTER IMG URL/LINK" >     
+                        <label  class="ms-2 pt-2" for="floatingInput">IMAGE</label>
                     </div>
                 </div>
                 <button class="d-block mx-auto p-1 btn btn-large btn-primary mb-4 edit-btn">EDIT LISTING</button>       

@@ -4,13 +4,16 @@ const wrapAsync=require("../utils/wrapAsync.js");
 const listingController = require("../controllers/listings.js")
 const {validateListing }= require("../middleware/listings.js");
 const { isLoggedIn, isOwner  } = require('../middleware/users.js');
+const multer  = require('multer')
+const { storage } = require("../cloudConfig.js");
+const upload = multer({ storage });
 
 router  
     .route("/")
         //INDEX ROUTE
         .get(wrapAsync(listingController.index))
         //CREATE ROUTE
-        .post(validateListing,wrapAsync(listingController.addListing))
+        .post(upload.single("listing[image]"),validateListing,wrapAsync(listingController.addListing))
 
 //NEW ROUTE
 router.get("/new/guide",listingController.showGuide);
@@ -28,7 +31,7 @@ router.get("/:id/confirmRequest",isLoggedIn,isOwner,wrapAsync(listingController.
 router
     .route("/:id")
         //UPDATE ROUTE
-        .put(isLoggedIn,isOwner,validateListing,wrapAsync(listingController.updateListing))
+        .put(isLoggedIn,isOwner,upload.single("listing[image]"),validateListing,wrapAsync(listingController.updateListing))
         //DELETE ROUTE
         .delete(isLoggedIn,isOwner,wrapAsync(listingController.destroyListing))
 
