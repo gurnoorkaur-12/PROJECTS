@@ -1,0 +1,58 @@
+<%- layout("./layouts/boilerplate.ejs")%>
+<div class="ms-4" style="min-height: 100vh;">
+    <div style="margin-top: 4rem;">
+        <h2 class="mb-4">  
+            <%=name%>
+        </h2>
+    </div>
+    <div>
+        <div class="d-flex">
+            <form action="/myaccount/reviews/reviewsByYou" method="GET">
+                <button class="btn btn-lg ps-0 border-0 reviewBy fw-medium">Reviews by you</button>
+            </form>
+            <form action="/myaccount/reviews/reviewsAboutYou" method="GET">
+                <button class= "btn btn-lg border-0 reviewAbout fw-medium">Reviews about you</button>
+            </form>
+        </div>
+        <hr class="mt-2">
+        <div class="container">
+            <div class="row row-cols-2 row-cols-lg-2 gy-3">
+                <%for(let i = 0 ; i < listings.length ; i++){%>
+                    <%for(let j = 0 ; j < listings[i].reviews.length ; j++){%>
+                        <div class="card border-0 col">
+                            <div class="card-header border border-bottom-0 bg-white">
+                                <div class="d-flex">
+                                    <p class="mb-0" style="color:#052c65">
+                                        @<%=listings[i].reviews[j].author.username%>
+                                    </p>
+                                    <div class="review-rating ms-4 align-self-start d-flex flex-wrap-none">
+                                        <%for(let k=0 ; k < listings[i].reviews[j].rating ; k++){%>
+                                            <i class="fa-regular fa-star fa-solid text-warning m-1 mb-2" style="font-size: 1.2rem;" ></i>
+                                        <%}%>
+                                    </div>
+                                    <p class="text-secondary-emphasis fst-italic mb-0" style="font-size: 0.8rem; margin-left: auto;">
+                                        <%=listings[i].reviews[j].createdAt.toLocaleDateString()%>
+                                    </p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="mb-0" style="font-size: 0.9rem;">
+                                        <%=listings[i].title%>
+                                    </p>
+                                    <a href="/listings/<%=listings[i]._id%>" class="btn btn-sm p-0" style="margin-left:auto ;">View Review</a>
+                                </div>
+                            </div>
+                            <div class="card-body border border-top-secondary">
+                                <h5 class="card-title"></h5>
+                                <p class="card-text"><%=listings[i].reviews[j].comment%></p> 
+                            </div>
+                        </div>
+                        <!-- <div class="">
+                            <div class="p-3">Row column</div>
+                        </div> -->
+                    <%}%>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+

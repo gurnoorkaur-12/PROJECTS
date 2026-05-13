@@ -4,6 +4,7 @@ const ExpressError=require("../utils/ExpressError.js");
 const dayjs = require('dayjs');
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
+const opencage = require('opencage-api-client');
 
 
 module.exports.index = async (req,res)=>{
@@ -13,9 +14,22 @@ module.exports.index = async (req,res)=>{
 module.exports.addListing = async(req,res,next)=>{
     let url = req.file.path;
     let filename = req.file.filename;
+
+    let response = await opencage.geocode({ 
+        q:`${req.body.listing.location},${req.body.listing.country}`,
+        key:process.env.OPENCAGE_API_KEY,
+        limit:1,
+    })
+    let {lat,lng} = response.results[0].geometry;
+
     const newListing=new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = {url,filename};
+
+    newListing.geometry = {
+        type : 'Point',
+        coordinates:[lng,lat]
+    };
     await newListing.save();   
     req.flash('success',"New Listing created");
     res.redirect("/listings");

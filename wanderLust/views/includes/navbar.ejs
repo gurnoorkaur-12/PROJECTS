@@ -3,43 +3,41 @@
         <a class="navbar-brand" href="/listings">
             <i class=" explore fa-regular fa-compass logo"></i>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header" style="background-color: #e7e7e726;">
-                <a class="navbar-brand" href="/myaccount">
-                    <i class="fa-solid fa-user fa-lg" style="color:#adadad;"></i>
-                    <span class="ms-2">My Account</span>
-                </a>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/listings">EXPLORE</a>
+        <div class="d-flex">
+            <ul class="list-group list-group-horizontal navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item list-group-item">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </li>
+                <li class="nav-item list-group-item">
+                    <a class="nav-link add-btn" href="/listings/new/guide"><b>Switch to Hosting</b></a>     
+                </li>
+                <%if(currUser){%>
+                    <li class="nav-item list-group-item">
+                        <a class="nav-link d-flex" href="/myaccount/about">
+                            <div class="name-icon" style="height: 2rem; width: 2rem;">
+                                <i class="fa-solid fa-sm fa-<%=currUser.username.charAt(0).toLowerCase()%>" style="color: rgb(255, 255, 255); margin: auto;"></i>
+                            </div>
+                        </a>
                     </li>
-                    <li class="nav-item ms-md-auto">
-                        <a class="nav-link" href="/listings/new/guide">BECOME A HOST</a>     
+                    <li class="nav-item list-group-item" id="logout-form">
+                        <form method="POST" action="/logout">
+                            <input type="hidden" class="redirectUrl" name="redirectUrl" value="">
+                            <button class="nav-link" id = "logout-btn"><b>LOG OUT</b></button>
+                        </form>
                     </li>
-                    <%if(currUser){%>
-                        <li class="nav-item" id="logout-form">
-                            <form method="POST" action="/logout">
-                                <input type="hidden" class="redirectUrl" name="redirectUrl" value="">
-                                <button class="nav-link" id = "logout-btn"><b>LOG OUT</b></button>
-                            </form>
-                        </li>
                     <%}else{%>
-                        <li class="nav-item">
-                                <a class ="nav-link signup-link" onclick="changeRoute(event,'/signupModal')" style="cursor: default;" data-bs-dismiss="offcanvas"><b>SIGN UP</b></a>
+                        <li class="nav-item list-group-item">
+                            <a class ="nav-link signup-link" onclick="changeRoute(event,'/signupModal')" style="cursor: default;"><b>SIGN UP</b></a>
                         </li>
-                        <li class="nav-item">
-                            <a class ="nav-link login-link" onclick="changeRoute(event,'/loginModal')" style="cursor: default;" data-bs-dismiss="offcanvas"><b>LOG IN</b></a>
+                        <li class="nav-item list-group-item">
+                            <a class ="nav-link login-link" onclick="changeRoute(event,'/loginModal')" style="cursor: default;"><b>LOG IN</b></a>
                         </li>
                     <%}%>
-                </ul>
-            </div>
-        </div>
+            </ul>
+    </div>
     </div>
 </nav>
 

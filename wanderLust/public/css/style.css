@@ -104,7 +104,7 @@
     border: none !important;
     color: white !important;
 }
-.rounded-pill{
+.exit-btn{
     width: 6rem;
     margin: 1rem;
     border: none;
@@ -382,4 +382,55 @@
 }
 .register-alert{
     justify-content: space-between;
+}
+
+#map { 
+    height: 30rem;
+    width: 80rem;
+    margin: 10px auto;
+    border-radius: 1.8rem;
+    margin-bottom: 5rem;
+}
+
+@media(min-width:768px){
+    .add-btn{
+        background-color: #f9f9f9;
+        border:0;
+        border-radius: 2rem;
+    } 
+    .add-btn:hover{
+        background-color: rgba(203, 203, 203, 0.139);
+    }
+}
+.myaccount{
+    height: 80vh;
+    display:flex ;
+}
+.profile{
+    border-radius: 0;
+    object-fit: contain;
+}
+.about{
+    margin-left: 3rem;
+    width: 25vw;
+    box-shadow: 2px 1px 10px -5px;
+    border: 0;
+    border-radius: 1rem
+}
+.name-icon{
+    display: flex;
+    background-color: black;
+    border-radius: 50%;
+}
+.profile-options:hover{
+    transition:0.5s ease-in-out;
+    box-shadow: 0.5px 0.5px 8px -5px;
+    background-color: rgba(203, 203, 203, 0.139);
+}
+.reviewBy:active{
+    text-decoration: underline;
+    transition: 0.3s all;
+}
+.reviewAbout:active{
+    text-decoration: underline;
 }

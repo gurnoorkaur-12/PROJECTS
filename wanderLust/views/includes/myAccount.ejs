@@ -1,0 +1,44 @@
+<%-layout("./layouts/boilerplate.ejs");%>
+<div class="card border-0 border-end border-dark-subtle profile h-100">
+    <div class="card-title mt-4 ms-0 pt-4 pb-4 mb-1">
+        <h2>
+            Profile
+        </h2>
+    </div>
+    <div class="card-body ps-0">
+        <ul class="list-group list-group-flush ps-0">
+            <li class="list-group-item border-0 h-25 rounded-pill badge p-3 mb-2 ps-0 profile-options">
+                <a href="/myaccount/about" class="link text-dark">
+                    <h5>
+                        <div class="d-flex">
+                            <div class="me-1 ms-2  name-icon" style="height: 2rem; width: 2rem;">
+                                <i class="fa-solid fa-sm fa-<%=currUser.username.charAt(0).toLowerCase()%>" style="color: rgb(255, 255, 255); margin: auto;"></i>
+                            </div>
+                            About Me
+                        </div> 
+                    </h5>   
+                </a>
+            </li>
+            <li class="list-group-item border-0 ps-0 h-25 rounded-pill badge mb-2 p-3 profile-options">
+                <a href="/myaccount/trips" class="link text-dark">
+                    <h5>
+                        <div class="d-flex">
+                            <img src="/images/travel.svg" alt="past trips" class="me-1 ms-1">
+                            Past Trips
+                        </div>
+                    </h5>
+                </a>
+            </li>
+            <li class="list-group-item border-0 ps-0 h-25 rounded-pill badge p-3 profile-options">
+                <a href="/myaccount/reviews/reviewsByYou" class="link text-dark">
+                    <h5>
+                        <div class="d-flex flex-wrap-nowrap">
+                            <img src="/images/tooltip.svg" alt="Reviews written" class="me-1 ms-2">
+                            <p class="mb-0">Reviews I've written</p>
+                        </div>
+                    </h5>
+                </a>        
+            </li>
+        </ul>
+    </div>
+</div>

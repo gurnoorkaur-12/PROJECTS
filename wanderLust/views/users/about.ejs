@@ -1,0 +1,74 @@
+<div class="myaccount">
+    <%-include('../includes/myAccount.ejs')%>
+    <div class="h-100 ms-2 d-flex">
+        <div>
+            <h2 class="m-4 p-4 mb-1">About me</h2>
+            <div class="card about p-4">
+                <div class="mx-auto name-icon" style="height: 7rem; width: 7rem;">
+                    <i class="fa-solid fa-2xl fa-<%=currUser.username.charAt(0).toLowerCase()%>" style="color: rgb(255, 255, 255); margin: auto;"></i>
+                </div>
+                <div class="card-title mx-auto mt-3">
+                    <h3><%=currUser.username%></h3>
+                    <h6 class="text-center">Guest</h6>
+                </div>
+            </div>
+        </div>
+        <%if(currUser.intro){%>
+            <div class="card ms-4 h-50 align-self-center border-0 me-2" style="width: 24rem;">
+                <div class="card-body">
+                    <h6><%=currUser.intro%></h6>
+                    <button class="start-btn btn btn-sm ps-4 pe-4" style="background-color: #db0c64 !important; margin-left:0 !important;" data-bs-toggle="modal" data-bs-target="#introModal">
+                        <i class="fa-regular fa-pen-to-square fa-lg" style="color: rgb(255, 255, 255);"></i>
+                        Edit intro
+                    </button>
+                </div>
+            </div>
+        <%}else{%>
+            <div class="card ms-4 h-50 pt-4 align-self-center border-0 me-2" style="width: 18rem;">
+                <div class="card-body p-4">
+                    <h6>Your profile is an important part of every reservation. Create yours to help other hosts and guests get to know you.</h6>
+                    <div>
+                        <button class="start-btn btn btn-lg ps-4 pe-4" style="background-color: #db0c64 !important;" data-bs-toggle="modal" data-bs-target="#introModal">Add intro</button>
+                    </div>
+                </div>
+            </div>
+        <%}%>
+    </div>
+</div>
+
+<form action="/myaccount/about" method="POST" class="needs-validation" novalidate>
+    <div class="modal fade" id="introModal" tabindex="-1" aria-labelledby="introModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 2.5rem;"> 
+                <div class="modal-header  mt-4 p-4 pb-0 row border-0">
+                    <h1 class="col-8 modal-title fs-3" id="introModalLabel">About You</h1>
+                    <button type="button" class="btn-close col-4 me-4" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="cols-12">
+                        <p class="mb-0">
+                            Tell us a little bit about yourself so your future Hosts or guests can get to know you.
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <textarea name="intro" id="intro" maxlength="500" rows="8" class="w-100 fs-6 p-1" required><%if(currUser.intro){%><%=currUser.intro%><%}%></textarea>
+                    <p class="fs-6">Only 500 characters available</p>
+                    <div class="invalid-feedback">
+                        Please provide a Title!
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <%if(currUser){%>
+                        <button type="submit" form="deleteForm" class="border-0 btn-light btn btn-primary btn-lg ms-0">
+                            <i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0);"></i>
+                        </button>
+                    <%}%>
+                    <button type="submit" class=" btn border-0 btn-primary btn-lg me-4" style="background-color: #db0c64 !important;">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="/myaccount/about?_method=PUT" method="POST" id="deleteForm">
+    <input type="hidden" name="delete" value="true">
+</form>

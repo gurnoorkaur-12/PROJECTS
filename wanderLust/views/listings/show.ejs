@@ -68,8 +68,18 @@
                     <h5>NO REVIEWS YET!</h5>
                     <h6>ADD A REVIEW</h6>
                 </div>
-                
             </div>
         <%}%>
     </div>
+    <hr class="mb-4 mt-4">
+    <div class="row">
+        <h3 class="col-12">Where you'll be</h3>
+        <div id="map" class="col-12"></div>
+    </div>
 </div>
+<script>
+    const mapKey = "<%=process.env.THUNDERFOREST_API_KEY%>"
+    let coordinates = <%- JSON.stringify(listing.geometry.coordinates) %>;
+    
+</script>
+<script src="/js/map.js"></script>

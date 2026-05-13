@@ -11,10 +11,23 @@ router
 
 router
     .route("/login")
-        .get(userController.renderLoginForm)
+        .get(wrapAsync(userController.renderLoginForm))
         .post(saveRedirectUrl,isUsername ,isAuthenticated,wrapAsync(userController.login));
 
 router
-    .post("/logout",wrapAsync(userController.logout));
+    .route("/logout")
+        .post(wrapAsync(userController.logout));
 
+router
+    .route("/myaccount/about")
+        .get(wrapAsync(userController.showAbout))
+        .post(wrapAsync(userController.addIntro))
+        .put(wrapAsync(userController.updateIntro));
+router
+    .route("/myaccount/trips")
+        .get(wrapAsync(userController.showTrips));
+
+router
+    .route("/myaccount/reviews/:id")
+        .get(wrapAsync(userController.showMyReviews));
 module.exports = router;

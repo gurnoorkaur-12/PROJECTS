@@ -1,0 +1,27 @@
+<div class="myaccount">
+    <div>
+        <%-include("../includes/myAccount.ejs")%>
+    </div>
+    <div class="h-100">
+        <div>
+            <h2 class="m-4 p-4 mb-1">Past Trips</h2>
+        </div>
+        <div>
+            <div class="card h-50 ms-4 me-4 border-0 text-center" style="width: 100%;">
+                <img src="/images/trips.png" class="card-img-top mx-auto" alt="Travel Bag" style="height: 12rem; width: 12rem;">
+                <div class="card-body">
+                    <h6 class="card-text ps-4 pe-4 mx-auto" style="width:70%">
+                        You'll find your past reservations here after you've taken your first trip on Wanderlust
+                    </h6>
+                    <form action="/listings" method="GET">
+                        <button class="start-btn btn btn-lg ps-4 pe-4" style="background-color: #db0c64 !important; margin-left:0 !important;">
+                            Book a Trip
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
