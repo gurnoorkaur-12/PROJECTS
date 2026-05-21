@@ -1,4 +1,4 @@
-🏡 Wanderlust 
+🏡 Wanderlust - Travel Accomodation Website
 
 Wanderlust is a full-stack web application that allows users to explore and create travel listings.<br>
 It provides an interactive platform where users can search for homes at various locations or become a host.
@@ -20,5 +20,5 @@ It provides an interactive platform where users can search for homes at various 
 - Frontend: HTML, CSS, JavaScript, Bootstrap, EJS  
 - Backend: Node.js , Express  
 - Database: MongoDB  
-- Maps & APIs: Mapbox  
+- Maps & APIs: Thunderforest Tiles API , Opencage Geocoding API, Leaflet 
 - Other Tools: Cloudinary , Joi , Passport.js  
